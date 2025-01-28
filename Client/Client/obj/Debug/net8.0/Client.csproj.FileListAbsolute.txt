@@ -1,0 +1,15 @@
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\obj\Debug\net8.0\Client.GeneratedMSBuildEditorConfig.editorconfig
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\obj\Debug\net8.0\Client.AssemblyInfoInputs.cache
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\obj\Debug\net8.0\Client.AssemblyInfo.cs
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\obj\Debug\net8.0\Client.csproj.CoreCompileInputs.cache
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\obj\Debug\net8.0\Client.sourcelink.json
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\bin\Debug\net8.0\Client.exe
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\bin\Debug\net8.0\Client.deps.json
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\bin\Debug\net8.0\Client.runtimeconfig.json
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\bin\Debug\net8.0\Client.dll
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\bin\Debug\net8.0\Client.pdb
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\obj\Debug\net8.0\Client.dll
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\obj\Debug\net8.0\refint\Client.dll
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\obj\Debug\net8.0\Client.pdb
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\obj\Debug\net8.0\Client.genruntimeconfig.cache
+E:\Users\Александр\source\repos\diiz2445\macro-test-case\Client\Client\obj\Debug\net8.0\ref\Client.dll
