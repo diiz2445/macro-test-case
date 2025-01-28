@@ -1,7 +1,11 @@
-﻿internal class Program
+﻿
+namespace Client
 {
-    private static void Main(string[] args)
+    internal class Program
     {
-        Console.WriteLine("Hello, World!");
+        private static void Main(string[] args)
+        {
+            Client.Run();
+        }
     }
 }
