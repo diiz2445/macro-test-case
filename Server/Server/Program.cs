@@ -4,16 +4,10 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        string[] tests = {
-            "aba",
-            "abba",
-            "dre",
-            "abdba" };
-        foreach (string test in tests)
-        {
-            Console.WriteLine($"string: {test}\nresult:{ServerLogic.isItPalindrom(test)}");
-        }
-
+        ServerConnection server = new ServerConnection("127.0.0.1", 8888,1);
+        server.Listen();
+        
+        
         Console.ReadLine();
     }
 }
