@@ -59,18 +59,18 @@ namespace Server.Server
                 int bytesRead = stream.Read(buffer, 0, buffer.Length);
                 Console.WriteLine($"Получено: {Encoding.UTF8.GetString(buffer, 0, bytesRead)}");
 
-                stream.Close();
+                //stream.Close();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Ошибка: {ex.Message}");
             }
-            finally
-            {
-                client.Close();
-                _connectionLimiter.Release(); // Освобождаем слот
-                Console.WriteLine("Соединение закрыто.");
-            }
+            //finally
+            //{
+            //    client.Close();
+            //    _connectionLimiter.Release(); // Освобождаем слот
+            //    Console.WriteLine("Соединение закрыто.");
+            //}
         }
 
 

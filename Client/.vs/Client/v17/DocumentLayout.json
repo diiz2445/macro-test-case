@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "E:\\Users\\\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\Client\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6BE1DE26-4507-4F7A-9B86-1940AD1CBFAE}|Client\\Client.csproj|e:\\users\\\u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\client\\client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6BE1DE26-4507-4F7A-9B86-1940AD1CBFAE}|Client\\Client.csproj|solutionrelative:client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6BE1DE26-4507-4F7A-9B86-1940AD1CBFAE}|Client\\Client.csproj|e:\\users\\\u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\client\\client\\client\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6BE1DE26-4507-4F7A-9B86-1940AD1CBFAE}|Client\\Client.csproj|solutionrelative:client\\client\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BE1DE26-4507-4F7A-9B86-1940AD1CBFAE}|Client\\Client.csproj|e:\\users\\\u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\client\\client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BE1DE26-4507-4F7A-9B86-1940AD1CBFAE}|Client\\Client.csproj|solutionrelative:client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,28 +26,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Client.cs",
               "DocumentMoniker": "E:\\Users\\\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\Client\\Client\\Client\\Client.cs",
               "RelativeDocumentMoniker": "Client\\Client\\Client.cs",
               "ToolTip": "E:\\Users\\\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\Client\\Client\\Client\\Client.cs",
               "RelativeToolTip": "Client\\Client\\Client.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAswCUAAABcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T19:00:30.973Z"
+              "WhenOpened": "2025-01-28T19:00:30.973Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\Users\\\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\Client\\Client\\Program.cs",
               "RelativeDocumentMoniker": "Client\\Program.cs",
               "ToolTip": "E:\\Users\\\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\Client\\Client\\Program.cs",
               "RelativeToolTip": "Client\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T16:37:18.829Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T16:37:18.829Z"
             }
           ]
         }
