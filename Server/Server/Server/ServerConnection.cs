@@ -32,13 +32,7 @@ namespace Server.Server
                 var client = listener.AcceptTcpClient();
                 Console.WriteLine("Новое входящее соединение...");
 
-                // Ограничиваем количество подключений
-                if (!_connectionLimiter.Wait(0))
-                {
-                    Console.WriteLine("Максимальное количество подключений достигнуто. Соединение отклонено.");
-                    client.Close();
-                    continue;
-                }
+                
 
                 // Обрабатываем подключение в отдельном потоке
                 ThreadPool.QueueUserWorkItem(HandleClient, client);
@@ -47,32 +41,39 @@ namespace Server.Server
         private static void HandleClient(object clientObj)
         {
             var client = (TcpClient)clientObj;
-
-            try
+            while (true)
             {
-                var stream = client.GetStream();
-                byte[] buffer = Encoding.UTF8.GetBytes("Добро пожаловать на сервер!\n");
-                stream.Write(buffer, 0, buffer.Length);
+                if (_connectionLimiter.CurrentCount != 0)
+                {
+                    try
+                    {
+                        _connectionLimiter.Wait();
+                        var stream = client.GetStream();
+                        byte[] buffer = Encoding.UTF8.GetBytes("Добро пожаловать на сервер!\n");
+                        stream.Write(buffer, 0, buffer.Length);
 
-                // Пример простой обработки данных
-                buffer = new byte[1024];
-                int bytesRead = stream.Read(buffer, 0, buffer.Length);
-                Console.WriteLine($"Получено: {Encoding.UTF8.GetString(buffer, 0, bytesRead)}");
+                        // Пример простой обработки данных
+                        buffer = new byte[1024];
+                        int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                        Console.WriteLine($"Получено: {Encoding.UTF8.GetString(buffer, 0, bytesRead)}");
 
-                //stream.Close();
+                        //stream.Close();
+                        _connectionLimiter.Release();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Ошибка: {ex.Message}");
+                    }
+                    //finally
+                    //{
+                    //    client.Close();
+                    //    _connectionLimiter.Release(); // Освобождаем слот
+                    //    Console.WriteLine("Соединение закрыто.");
+                    //}}
+                }
+
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-            }
-            //finally
-            //{
-            //    client.Close();
-            //    _connectionLimiter.Release(); // Освобождаем слот
-            //    Console.WriteLine("Соединение закрыто.");
-            //}
         }
-
 
     }
 }

@@ -48,7 +48,7 @@
               "RelativeDocumentMoniker": "Server\\Server\\ServerConnection.cs",
               "ToolTip": "E:\\Users\\\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\Server\\Server\\Server\\ServerConnection.cs",
               "RelativeToolTip": "Server\\Server\\ServerConnection.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAWwD0AAAASAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAtwC0AAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-28T16:50:29.904Z",
               "EditorCaption": ""
@@ -63,7 +63,8 @@
               "RelativeToolTip": "Server\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T16:14:13.867Z"
+              "WhenOpened": "2025-01-28T16:14:13.867Z",
+              "EditorCaption": ""
             }
           ]
         }
