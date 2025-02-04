@@ -62,10 +62,13 @@ namespace Server.Server
                     {
                         string receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                         Console.WriteLine($"Получено: {receivedData}");
-
+                        while (_connectionLimiter.CurrentCount == 0) { }
+                        _connectionLimiter.Wait();
                         // Отправляем обратно ту же строку
                         byte[] responseData = Encoding.UTF8.GetBytes(receivedData);
                         stream.Write(responseData, 0, responseData.Length);
+                        Thread.Sleep(6000);
+                        _connectionLimiter.Release();
                     }
                 }
                 catch (Exception ex)
