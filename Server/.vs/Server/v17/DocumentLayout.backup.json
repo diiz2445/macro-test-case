@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "E:\\Users\\\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\Server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C3462EDD-5977-4B50-BE84-4E8FBD539082}|Server\\Server.csproj|e:\\users\\\u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\server\\server\\server\\serverconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3462EDD-5977-4B50-BE84-4E8FBD539082}|Server\\Server.csproj|solutionrelative:server\\server\\serverconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C3462EDD-5977-4B50-BE84-4E8FBD539082}|Server\\Server.csproj|e:\\users\\\u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\server\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C3462EDD-5977-4B50-BE84-4E8FBD539082}|Server\\Server.csproj|solutionrelative:server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3462EDD-5977-4B50-BE84-4E8FBD539082}|Server\\Server.csproj|e:\\users\\\u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\server\\server\\server\\serverconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3462EDD-5977-4B50-BE84-4E8FBD539082}|Server\\Server.csproj|solutionrelative:server\\server\\serverconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C3462EDD-5977-4B50-BE84-4E8FBD539082}|Server\\Server.csproj|e:\\users\\\u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\server\\server\\server\\serverlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -36,32 +36,32 @@
               "RelativeDocumentMoniker": "Server\\Server\\ServerLogic.cs",
               "ToolTip": "E:\\Users\\\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\Server\\Server\\Server\\ServerLogic.cs",
               "RelativeToolTip": "Server\\Server\\ServerLogic.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-28T16:50:47.228Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ServerConnection.cs",
               "DocumentMoniker": "E:\\Users\\\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\Server\\Server\\Server\\ServerConnection.cs",
               "RelativeDocumentMoniker": "Server\\Server\\ServerConnection.cs",
               "ToolTip": "E:\\Users\\\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\Server\\Server\\Server\\ServerConnection.cs",
               "RelativeToolTip": "Server\\Server\\ServerConnection.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAlwDUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAQwGAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-28T16:50:29.904Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\Users\\\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\Server\\Server\\Program.cs",
               "RelativeDocumentMoniker": "Server\\Program.cs",
-              "ToolTip": "E:\\Users\\\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\Server\\Server\\Program.cs",
-              "RelativeToolTip": "Server\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAcAAAAAAAAAA==",
+              "ToolTip": "E:\\Users\\\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\\source\\repos\\diiz2445\\macro-test-case\\Server\\Server\\Program.cs*",
+              "RelativeToolTip": "Server\\Program.cs*",
+              "ViewState": "AgIAACQAAAAAAAAAAAAuwDsAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-28T16:14:13.867Z",
               "EditorCaption": ""

@@ -20,11 +20,9 @@ namespace Server.Server
 
             _connectionLimiter = new SemaphoreSlim(MaxConnections, MaxConnections);
 
-            listener.Start();
-            Console.WriteLine($"Сервер запущен на порту {port}. Максимум подключений: {MaxConnections}");
-
+            
         }
-        public void Listen()
+        public async void Listen()
         {
             while (true)
             {
@@ -33,22 +31,29 @@ namespace Server.Server
                 Console.WriteLine("Новое входящее соединение...");
 
                 
-
-                // Обрабатываем подключение в отдельном потоке
-                ThreadPool.QueueUserWorkItem(HandleClient, client);
+                HandleClient(client);
+                
+                
             }
         }
+        public void Start() { try { listener.Start(); Console.WriteLine($"Сервер запущен. Количество потоков обработки = {_connectionLimiter.CurrentCount}"); } catch { } }
+        public void Stop() { try { listener.Stop(); Console.WriteLine("Сервер остановлен"); } catch { Console.WriteLine("ошибка в остановке сервера"); } }
         private static void HandleClient(object clientObj)
         {
             var client = (TcpClient)clientObj;
-            while (true)
+            var stream = client.GetStream();
+            while(true)
+            
             {
-                if (_connectionLimiter.CurrentCount != 0)
+                //_connectionLimiter.Wait();
+                try
                 {
-                    try
+                    // Ожидаем подключения и работаем с клиентом
+
                     {
-                        _connectionLimiter.Wait();
-                        var stream = client.GetStream();
+                        //_connectionLimiter.Wait(); // Блокируем слот
+
+                        
                         byte[] buffer = Encoding.UTF8.GetBytes("Добро пожаловать на сервер!\n");
                         stream.Write(buffer, 0, buffer.Length);
 
@@ -56,22 +61,22 @@ namespace Server.Server
                         buffer = new byte[1024];
                         int bytesRead = stream.Read(buffer, 0, buffer.Length);
                         Console.WriteLine($"Получено: {Encoding.UTF8.GetString(buffer, 0, bytesRead)}");
-
-                        //stream.Close();
-                        _connectionLimiter.Release();
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Ошибка: {ex.Message}");
-                    }
-                    //finally
-                    //{
-                    //    client.Close();
-                    //    _connectionLimiter.Release(); // Освобождаем слот
-                    //    Console.WriteLine("Соединение закрыто.");
-                    //}}
+                            //_connectionLimiter.Release();
+                            stream.Close();
+                        }
                 }
-
+                catch (Exception ex)
+                {
+                    //Console.WriteLine($"Ошибка: {ex.Message}");
+                }
+                finally
+                {
+                    // Всегда освобождаем слот, независимо от успеха или ошибки
+                    
+                    //client.Close();
+                    //Console.WriteLine("Соединение закрыто.");
+                    Thread.Sleep(100);
+                }
             }
         }
 
