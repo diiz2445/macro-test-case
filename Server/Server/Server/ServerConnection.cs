@@ -22,7 +22,7 @@ namespace Server.Server
 
             
         }
-        public async void Listen()
+        public async Task Listen()
         {
             while (true)
             {
@@ -36,46 +36,46 @@ namespace Server.Server
                 
             }
         }
-        public void Start() { try { listener.Start(); Console.WriteLine($"Сервер запущен. Количество потоков обработки = {_connectionLimiter.CurrentCount}"); } catch { } }
-        public void Stop() { try { listener.Stop(); Console.WriteLine("Сервер остановлен"); } catch { Console.WriteLine("ошибка в остановке сервера"); } }
-        private static void HandleClient(object clientObj)
+        public void Start()
         {
-            var client = (TcpClient)clientObj;
-            var stream = client.GetStream();
-            while(true)
-            
+            listener.Start();
+            Console.WriteLine("Сервер запущен. Ожидание подключений...");
+
+            while (true)
             {
-                //_connectionLimiter.Wait();
+                var client = listener.AcceptTcpClient();
+                Task.Run(() => HandleClient(client));
+            }
+        }
+        public void Stop() { try { listener.Stop(); Console.WriteLine("Сервер остановлен"); } catch { Console.WriteLine("ошибка в остановке сервера"); } }
+        private void HandleClient(TcpClient client)
+        {
+            Console.WriteLine("Клиент подключен.");
+            using (var stream = client.GetStream())
+            {
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+
                 try
                 {
-                    // Ожидаем подключения и работаем с клиентом
-
+                    while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
                     {
-                        //_connectionLimiter.Wait(); // Блокируем слот
+                        string receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                        Console.WriteLine($"Получено: {receivedData}");
 
-                        
-                        byte[] buffer = Encoding.UTF8.GetBytes("Добро пожаловать на сервер!\n");
-                        stream.Write(buffer, 0, buffer.Length);
-
-                        // Пример простой обработки данных
-                        buffer = new byte[1024];
-                        int bytesRead = stream.Read(buffer, 0, buffer.Length);
-                        Console.WriteLine($"Получено: {Encoding.UTF8.GetString(buffer, 0, bytesRead)}");
-                            //_connectionLimiter.Release();
-                            stream.Close();
-                        }
+                        // Отправляем обратно ту же строку
+                        byte[] responseData = Encoding.UTF8.GetBytes(receivedData);
+                        stream.Write(responseData, 0, responseData.Length);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    //Console.WriteLine($"Ошибка: {ex.Message}");
+                    Console.WriteLine($"Ошибка: {ex.Message}");
                 }
                 finally
                 {
-                    // Всегда освобождаем слот, независимо от успеха или ошибки
-                    
-                    //client.Close();
-                    //Console.WriteLine("Соединение закрыто.");
-                    Thread.Sleep(100);
+                    client.Close();
+                    Console.WriteLine("Клиент отключен.");
                 }
             }
         }

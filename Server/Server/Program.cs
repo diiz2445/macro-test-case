@@ -60,8 +60,8 @@ try
 {
     server.Start();
     
-    while (true)
-        server.Listen();
+    //while (true)
+       //await server.Listen();
 
     
 }
