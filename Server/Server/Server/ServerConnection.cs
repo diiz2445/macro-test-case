@@ -41,6 +41,7 @@ namespace Server.Server
             listener.Start();
             Console.WriteLine("Сервер запущен. Ожидание подключений...");
 
+            //прослушивание на подключение клиента
             while (true)
             {
                 var client = listener.AcceptTcpClient();
@@ -60,15 +61,15 @@ namespace Server.Server
                 {
                     while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
                     {
+                        //получение с клиента строки на сравнение
                         string receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                         Console.WriteLine($"Получено: {receivedData}");
-                        while (_connectionLimiter.CurrentCount == 0) { }
-                        _connectionLimiter.Wait();
-                        // Отправляем обратно ту же строку
-                        byte[] responseData = Encoding.UTF8.GetBytes(receivedData);
+                        
+                        //отправка результата
+                        byte[] responseData = Encoding.UTF8.GetBytes(isItPalindrom(receivedData));
                         stream.Write(responseData, 0, responseData.Length);
-                        Thread.Sleep(6000);
-                        _connectionLimiter.Release();
+                        
+                      
                     }
                 }
                 catch (Exception ex)
@@ -82,7 +83,23 @@ namespace Server.Server
                 }
             }
         }
+        public static string isItPalindrom(string input)
+        {
+            while (_connectionLimiter.CurrentCount == 0) { }//ожидание освобождения потока обработки
 
+            _connectionLimiter.Wait();//блокируем поток
+            for (int i = 0; i < input.Length / 2; i++)
+            {
+                if (input[i] != input[input.Length - i - 1])
+                {
+                    _connectionLimiter.Release();//освобождаем поток
+                    return "false";
+                }
+            }
+            _connectionLimiter.Release();//освобождаем поток
+            return "true";
+
+        }
     }
 }
 
