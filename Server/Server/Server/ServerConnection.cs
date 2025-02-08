@@ -11,15 +11,15 @@ namespace Server.Server
     internal class ServerConnection
     {
         private static SemaphoreSlim _connectionLimiter;
-        private const int MaxConnections = 10;
+        private int _MaxConnections = 10;
         TcpListener listener;
         
         public ServerConnection(string host, int port, int MaxConnections)
         {
-            listener = new TcpListener(IPAddress.Any, port);
+            listener = new TcpListener(IPAddress.Parse(host), port);
+            _MaxConnections = MaxConnections;
 
             _connectionLimiter = new SemaphoreSlim(MaxConnections, MaxConnections);
-
             
         }
         public async Task Listen()
@@ -64,11 +64,16 @@ namespace Server.Server
                         //получение с клиента строки на сравнение
                         string receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                         Console.WriteLine($"Получено: {receivedData}");
-                        
-                        //отправка результата
-                        byte[] responseData = Encoding.UTF8.GetBytes(isItPalindrom(receivedData));
-                        stream.Write(responseData, 0, responseData.Length);
-                        
+                        if (_connectionLimiter.CurrentCount != 0)
+                        {
+                            //отправка результата
+                            byte[] responseData = Encoding.UTF8.GetBytes(isItPalindrom(receivedData));
+                            stream.Write(responseData, 0, responseData.Length);
+                        }
+                        else
+                        {
+                            stream.Write(Encoding.UTF8.GetBytes("ошибка: сервер перегружен"));
+                        }
                       
                     }
                 }
@@ -85,8 +90,8 @@ namespace Server.Server
         }
         public static string isItPalindrom(string input)
         {
-            while (_connectionLimiter.CurrentCount == 0) { }//ожидание освобождения потока обработки
-
+            //while (_connectionLimiter.CurrentCount == 0) { }//ожидание освобождения потока обработки
+            Thread.Sleep(4000);
             _connectionLimiter.Wait();//блокируем поток
             for (int i = 0; i < input.Length / 2; i++)
             {
