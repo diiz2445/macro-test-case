@@ -8,83 +8,78 @@ using System.Threading.Tasks;
 
 namespace Server.Server
 {
-    internal class ServerConnection
+    internal class ServerConnection:IDisposable
     {
         private static SemaphoreSlim _connectionLimiter;
         private int _MaxConnections = 10;
-        TcpListener listener;
         
+        private readonly TcpListener _listener;
+        private readonly List<Connection> _clients; // это пул подключений, нужен чтобы нормально отключить всех подключенных при остановке сервера
+        bool disposed;
+
         public ServerConnection(string host, int port, int MaxConnections)
         {
-            listener = new TcpListener(IPAddress.Parse(host), port);
+           
             _MaxConnections = MaxConnections;
 
             _connectionLimiter = new SemaphoreSlim(MaxConnections, MaxConnections);
-            
-        }
-        public async Task Listen()
-        {
-            while (true)
-            {
-                // Ожидаем подключения
-                var client = listener.AcceptTcpClient();
-                Console.WriteLine("Новое входящее соединение...");
 
-                
-                HandleClient(client);
-                
-                
-            }
-        }
-        public void Start()
-        {
-            listener.Start();
-            Console.WriteLine("Сервер запущен. Ожидание подключений...");
+            _listener = new TcpListener(IPAddress.Any, port);
+            _clients = new List<Connection>();
 
-            //прослушивание на подключение клиента
-            while (true)
-            {
-                var client = listener.AcceptTcpClient();
-                Task.Run(() => HandleClient(client));
-            }
         }
-        public void Stop() { try { listener.Stop(); Console.WriteLine("Сервер остановлен"); } catch { Console.WriteLine("ошибка в остановке сервера"); } }
-        private void HandleClient(TcpClient client)
+        public async Task ListenAsync()
         {
-            Console.WriteLine("Клиент подключен.");
-            using (var stream = client.GetStream())
+            try
             {
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-
-                try
+                _listener.Start();
+                Console.WriteLine("Сервер стартовал на " + _listener.LocalEndpoint);
+                while (true)
                 {
-                    while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
+                    TcpClient client = await _listener.AcceptTcpClientAsync();
+                    Console.WriteLine("Подключение: " + client.Client.RemoteEndPoint + " > " + client.Client.LocalEndPoint);
+                    lock (_clients)
                     {
-                        //получение с клиента строки на сравнение
-                        string receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                        Console.WriteLine($"Получено: {receivedData}");
-                        if (_connectionLimiter.CurrentCount != 0)
-                        {
-                            //отправка результата
-                            byte[] responseData = Encoding.UTF8.GetBytes(isItPalindrom(receivedData));
-                            stream.Write(responseData, 0, responseData.Length);
-                        }
-                        else
-                        {
-                            stream.Write(Encoding.UTF8.GetBytes("ошибка: сервер перегружен"));
-                        }
-                      
+                        _clients.Add(new Connection(client, c => { lock (_clients) { _clients.Remove(c); } c.Dispose(); }));
                     }
                 }
-                catch (Exception ex)
+            }
+            catch (SocketException)
+            {
+                Console.WriteLine("Сервер остановлен.");
+            }
+        }
+
+        public void Stop()
+        {
+            _listener.Stop();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposed)
+                throw new ObjectDisposedException(typeof(ServerConnection).FullName);
+            disposed = true;
+            _listener.Stop();
+            if (disposing)
+            {
+                lock (_clients)
                 {
-                    Console.WriteLine($"Ошибка: {ex.Message}");
-                }
-                finally
-                {
-                    client.Close();
-                    Console.WriteLine("Клиент отключен.");
+                    if (_clients.Count > 0)
+                    {
+                        Console.WriteLine("Отключаю клиентов...");
+                        foreach (Connection client in _clients)
+                        {
+                            client.Dispose();
+                        }
+                        Console.WriteLine("Клиенты отключены.");
+                    }
                 }
             }
         }
@@ -105,6 +100,9 @@ namespace Server.Server
             return "true";
 
         }
+
+
+        ~ServerConnection() => Dispose(false);
     }
 }
 
