@@ -20,3 +20,8 @@ bld/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
+
+/Server/Server/bin/
+/Server/.vs/
+/Client/.vs/
+/Client/Client/bin/
